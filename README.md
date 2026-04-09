@@ -28,3 +28,21 @@ POST /api/Tasks
 ## 4 – Atualizar Task
 PUT /api/Tasks/{id}
 ## 5 – Deletar Task
+DELETE /api/Tasks/{id}
+
+---
+
+# 🖥️ Rodando e Testando o Frontend
+## 1. Acessar a pasta
+cd frontend-task
+## 2. Instalar dependências
+npm install
+## 3. Iniciar Angular
+ng serve
+# 🌐 Acesso
+Após executar:
+http://localhost:4200
+# 🔗 Integração com API
+O front consome o backend em:
+http://localhost:5092/api/Tasks
+## ⚠️ Certifique-se de que o backend esteja rodando antes do Angular.
