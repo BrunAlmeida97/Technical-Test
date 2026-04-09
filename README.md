@@ -19,12 +19,12 @@ dotnet run
 Após executar, acessar:
 http://localhost:5092/swagger
 # 🌐 Endpoints
-1 – Listar Tasks
+## 1 – Listar Tasks
 GET /api/Tasks
-2 – Buscar por ID
+## 2 – Buscar por ID
 GET /api/Tasks/{id}
-3 – Criar Task
+## 3 – Criar Task
 POST /api/Tasks
-4 – Atualizar Task
+## 4 – Atualizar Task
 PUT /api/Tasks/{id}
-5 – Deletar Task
+## 5 – Deletar Task
