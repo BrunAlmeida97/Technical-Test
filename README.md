@@ -1,17 +1,19 @@
 # 💾 Rodando e Testando o Backend
-1. Acessar a pasta
+## 1. Acessar a pasta
 cd backend-api
 
-2. Restaurar dependências
+## 2. Restaurar dependências
 dotnet restore
-3. Configurar PostgreSQL
+## 3. Configurar PostgreSQL
 Editar appsettings.json:
+``bash
 "ConnectionStrings": {
   "DefaultConnection": "Host=localhost;Port=5432;Database=taskdb;Username=SEU_USUARIO;Password=SUA_SENHA"
 }
-4. Aplicar migrations
+
+## 4. Aplicar migrations
 dotnet ef database update
-5. Iniciar API
+## 5. Iniciar API
 dotnet run
 # 🌐 Swagger
 Após executar, acessar:
