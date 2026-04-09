@@ -1,0 +1,346 @@
+[
+    {
+        "id": "f2cfb835707f7a96",
+        "type": "tab",
+        "label": "Fluxo 1",
+        "disabled": false,
+        "info": "",
+        "env": []
+    },
+    {
+        "id": "32af7a1105839ceb",
+        "type": "mongodb",
+        "hostname": "127.0.0.1",
+        "topology": "direct",
+        "connectOptions": "",
+        "port": 27017,
+        "db": "cepdb",
+        "name": ""
+    },
+    {
+        "id": "6e45bd65cbfe1a26",
+        "type": "http in",
+        "z": "f2cfb835707f7a96",
+        "name": "",
+        "url": "/corretoras",
+        "method": "get",
+        "upload": false,
+        "skipBodyParsing": false,
+        "swaggerDoc": "",
+        "x": 160,
+        "y": 140,
+        "wires": [
+            [
+                "ed9a8dec4693f8fa"
+            ]
+        ]
+    },
+    {
+        "id": "731694cfe2919bf2",
+        "type": "template",
+        "z": "f2cfb835707f7a96",
+        "name": "",
+        "field": "payload",
+        "fieldType": "msg",
+        "format": "handlebars",
+        "syntax": "mustache",
+        "template": "<style>\n  body {\n    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;\n    background: #f3f6fb;\n    margin: 0;\n    padding: 20px;\n  }\n\n  .broker-container {\n    display: grid;\n    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));\n    gap: 20px;\n    margin-top: 20px;\n  }\n\n  .broker-card {\n    background: #e3f2fd; \n    border-left: 5px solid #42a5f5; \n    padding: 18px 20px;\n    border-radius: 12px;\n    box-shadow: 0 3px 8px rgba(0,0,0,0.12);\n    transition: 0.2s;\n    width: 500px;\n    margin-bottom: 20px;\n    align-items: center;\n  }\n\n  .broker-card:hover {\n    transform: translateY(-3px);\n    box-shadow: 0 5px 14px rgba(0,0,0,0.18);\n  }\n\n  .broker-title {\n    font-size: 18px;\n    font-weight: 700;\n    color: #0d47a1;\n    margin: 0 0 5px 0;\n  }\n\n  .broker-info {\n    color: #333;\n    margin: 4px 0;\n  }\n  </style>\n\n  <style>\n  .navbar {\n    background: #222;\n    padding: 12px 20px;\n    display: flex;\n    gap: 20px;\n    align-items: center;\n  }\n  .navbar a {\n    color: #eee;\n    text-decoration: none;\n    font-weight: 600;\n  }\n  .navbar a:hover {\n    color: #ffd54f;\n  }\n</style>\n\n<div class=\"navbar\">\n  <a href=\"/corretoras\">Corretoras</a>\n  <a href=\"/cep\">Buscar CEP</a>\n</div>\n\n\n<h2>Broker Catalog</h2>\n<div class=\"broker-container\">\n\n<ul>\n{{#payload}}\n  <div class=\"broker-card\">\n  <li>{{nome_social}} - {{municipio}} / {{cnpj}}</li>\n  <p></p>\n  </div>\n{{/payload}}\n  </div>\n</ul>\n",
+        "output": "str",
+        "x": 560,
+        "y": 140,
+        "wires": [
+            [
+                "203011b4d80bdb59"
+            ]
+        ]
+    },
+    {
+        "id": "203011b4d80bdb59",
+        "type": "http response",
+        "z": "f2cfb835707f7a96",
+        "name": "",
+        "statusCode": "",
+        "headers": {},
+        "x": 710,
+        "y": 140,
+        "wires": []
+    },
+    {
+        "id": "ed9a8dec4693f8fa",
+        "type": "http request",
+        "z": "f2cfb835707f7a96",
+        "name": "",
+        "method": "GET",
+        "ret": "obj",
+        "paytoqs": "ignore",
+        "url": "https://brasilapi.com.br/api/cvm/corretoras/v1",
+        "tls": "",
+        "persist": false,
+        "proxy": "",
+        "insecureHTTPParser": false,
+        "authType": "",
+        "senderr": false,
+        "headers": [],
+        "x": 380,
+        "y": 140,
+        "wires": [
+            [
+                "731694cfe2919bf2"
+            ]
+        ]
+    },
+    {
+        "id": "c9e98efb08cb589f",
+        "type": "http in",
+        "z": "f2cfb835707f7a96",
+        "name": "",
+        "url": "/cep",
+        "method": "get",
+        "upload": false,
+        "skipBodyParsing": false,
+        "swaggerDoc": "",
+        "x": 140,
+        "y": 240,
+        "wires": [
+            [
+                "04fdd813d93e6ad0"
+            ]
+        ]
+    },
+    {
+        "id": "04fdd813d93e6ad0",
+        "type": "http request",
+        "z": "f2cfb835707f7a96",
+        "name": "",
+        "method": "GET",
+        "ret": "txt",
+        "paytoqs": "ignore",
+        "url": "https://brasilapi.com.br/docs#tag/CEP-V2",
+        "tls": "",
+        "persist": false,
+        "proxy": "",
+        "insecureHTTPParser": false,
+        "authType": "",
+        "senderr": false,
+        "headers": [],
+        "x": 340,
+        "y": 240,
+        "wires": [
+            [
+                "6851dbe360ce9554"
+            ]
+        ]
+    },
+    {
+        "id": "6851dbe360ce9554",
+        "type": "template",
+        "z": "f2cfb835707f7a96",
+        "name": "",
+        "field": "payload",
+        "fieldType": "msg",
+        "format": "handlebars",
+        "syntax": "mustache",
+        "template": "<style>\n  .navbar {\n    background: #222;\n    padding: 12px 20px;\n    display: flex;\n    gap: 20px;\n    align-items: center;\n  }\n  .navbar a {\n    color: #eee;\n    text-decoration: none;\n    font-weight: 600;\n  }\n  .navbar a:hover {\n    color: #ffd54f;\n  }\n</style>\n\n<style>\n body {\n    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;\n    background: #f3f6fb;\n    margin: 0;\n    padding: 20px;\n  }\n\n  .search-container{\n    display: grid;\n    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));\n    gap: 20px;\n    margin-top: 20px;\n  }\n\n.search-box {\n  display: flex;\n  justify-content: center;\n  align-items: center;\n  gap: 10px;\n  margin: 20px auto;\n  padding: 20px;\n  width: 100%;\n}\n\n.search-box input {\n  width: 350px; \n  padding: 12px 15px;\n  font-size: 16px;\n  border: 2px solid #4a90e2;\n  border-radius: 8px;\n  outline: none;\n  transition: 0.3s;\n}\n\n.search-box input:focus {\n  border-color: #1c6dc6;      \n  box-shadow: 0 0 8px rgba(30, 100, 200, 0.3);\n}\n\n.search-box button {\n  background: #4a90e2;\n  color: white;\n  padding: 12px 25px;\n  border: none;\n  border-radius: 8px;\n  font-size: 16px;\n  cursor: pointer;\n  transition: 0.3s;\n}\n\n.search-box button:hover {\n  background: #1c6dc6;\n  transform: scale(1.05); \n}\n\n \n</style>\n\n<div class=\"navbar\">\n  <a href=\"/corretoras\">Corretoras</a>\n  <a href=\"/cep\">Buscar CEP</a>\n</div>\n\n\n<h2>Busca CEP</h2>\n<div class=\"search-container\">\n  <div class=\"search-card\"> \n<form method=\"GET\" action=\"/cep-search\">\n<div class=\"search-box\">\n  <input name=\"zipcode\" placeholder=\"Enter CEP\">\n  <button id=\"search-btn\">Search</button>\n</div>\n  </div>\n</div>\n</form>\n",
+        "output": "str",
+        "x": 520,
+        "y": 240,
+        "wires": [
+            [
+                "7378895bc2d7aab8"
+            ]
+        ]
+    },
+    {
+        "id": "7378895bc2d7aab8",
+        "type": "http response",
+        "z": "f2cfb835707f7a96",
+        "name": "",
+        "statusCode": "",
+        "headers": {},
+        "x": 670,
+        "y": 240,
+        "wires": []
+    },
+    {
+        "id": "8c1910000e3e0eca",
+        "type": "http in",
+        "z": "f2cfb835707f7a96",
+        "name": "",
+        "url": "/cep-search",
+        "method": "get",
+        "upload": false,
+        "skipBodyParsing": false,
+        "swaggerDoc": "",
+        "x": 160,
+        "y": 320,
+        "wires": [
+            [
+                "409d960e746c0457"
+            ]
+        ]
+    },
+    {
+        "id": "409d960e746c0457",
+        "type": "function",
+        "z": "f2cfb835707f7a96",
+        "name": "function 1",
+        "func": "msg.cep = msg.req.query.zipcode ? msg.req.query.zipcode :msg.req.params.cep;\nmsg.url = `https://brasilapi.com.br/api/cep/v2/${msg.cep}`;\nreturn msg;\n",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 400,
+        "y": 320,
+        "wires": [
+            [
+                "ca25fb904d0a23e0"
+            ]
+        ]
+    },
+    {
+        "id": "313cd8974e21c370",
+        "type": "http response",
+        "z": "f2cfb835707f7a96",
+        "name": "",
+        "statusCode": "",
+        "headers": {},
+        "x": 1090,
+        "y": 320,
+        "wires": []
+    },
+    {
+        "id": "ca25fb904d0a23e0",
+        "type": "http request",
+        "z": "f2cfb835707f7a96",
+        "name": "",
+        "method": "GET",
+        "ret": "obj",
+        "paytoqs": "ignore",
+        "url": "{{{url}}}",
+        "tls": "",
+        "persist": false,
+        "proxy": "",
+        "insecureHTTPParser": false,
+        "authType": "",
+        "senderr": false,
+        "headers": [],
+        "x": 580,
+        "y": 320,
+        "wires": [
+            [
+                "c4efc1e553681d29"
+            ]
+        ]
+    },
+    {
+        "id": "f90b043ae7c1d78d",
+        "type": "template",
+        "z": "f2cfb835707f7a96",
+        "name": "",
+        "field": "payload",
+        "fieldType": "msg",
+        "format": "handlebars",
+        "syntax": "mustache",
+        "template": "<style>\n  .navbar {\n    background: #222;\n    padding: 12px 20px;\n    display: flex;\n    gap: 20px;\n    align-items: center;\n  }\n  .navbar a {\n    color: #eee;\n    text-decoration: none;\n    font-weight: 600;\n  }\n  .navbar a:hover {\n    color: #ffd54f;\n  }\n</style>\n\n<style>\n.card {\n    background-color: #e8f4ff;\n    padding: 20px;\n    border-radius: 10px;\n    max-width: 400px;\n    margin: 20px auto;\n    box-shadow: 0 2px 8px rgba(0,0,0,0.1);\n    font-family: Arial;\n}\n\n.card-error {\n    background-color: #fafafa;\n    padding: 20px;\n    border-radius: 10px;\n    max-width: 400px;\n    margin: 20px auto;\n    box-shadow: 0 2px 8px rgba(0,0,0,0.1);\n    font-family: Arial;\n}\n\n.button {\n  background: #4a90e2;\n  color: white;\n  padding: 12px 25px;\n  border: none;\n  border-radius: 8px;\n  font-size: 16px;\n  cursor: pointer;\n  transition: 0.3s;\n}\n\n.button:hover {\n  background: #1c6dc6;\n  transform: scale(1.05); \n}\n</style>\n\n\n<style>\n body {\n    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;\n    background: #f3f6fb;\n    margin: 0;\n    padding: 20px;\n  }\n</style>\n\n<div class=\"navbar\">\n  <a href=\"/corretoras\">Corretoras</a>\n  <a href=\"/cep\">Buscar CEP</a>\n</div>\n\n<h2>Resultado</h2>\n\n{{#hasResult}}\n<div class=\"card\">\n    <p><b>CEP:</b> {{payload.cep}}</p>\n    <p><b>Rua:</b> {{payload.street}}</p>\n    <p><b>Bairro:</b> {{payload.neighborhood}}</p>\n    <p><b>Cidade:</b> {{payload.city}} / {{payload.state}}</p>\n</div>\n{{/hasResult}}\n\n{{^hasResult}}\n<div class=\"card-error\">\n    <p style=\"color:red; font-weight: bold;\">{{errorMessage}}</p>\n</div>\n{{/hasResult}}\n\n<form action=\"/cep\" method=\"GET\">\n     <button class=\"button\">Nova busca</button>\n</form>\n\n\n",
+        "output": "str",
+        "x": 940,
+        "y": 320,
+        "wires": [
+            [
+                "313cd8974e21c370"
+            ]
+        ]
+    },
+    {
+        "id": "78d8c973c1b03a73",
+        "type": "debug",
+        "z": "f2cfb835707f7a96",
+        "name": "debug 1",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "true",
+        "targetType": "full",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 460,
+        "y": 380,
+        "wires": []
+    },
+    {
+        "id": "c4efc1e553681d29",
+        "type": "function",
+        "z": "f2cfb835707f7a96",
+        "name": "function 2",
+        "func": "if (!msg.payload || msg.payload.error || msg.statusCode !== 200) {\n    msg.hasResult = false;\n    msg.errorMessage = \"CEP não encontrado. Verifique e tente novamente.\";\n    return msg;\n}\n\nmsg.hasResult = true;\nreturn msg;\n",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 760,
+        "y": 320,
+        "wires": [
+            [
+                "f90b043ae7c1d78d",
+                "ea2d29eb83cca827"
+            ]
+        ]
+    },
+    {
+        "id": "ea2d29eb83cca827",
+        "type": "function",
+        "z": "f2cfb835707f7a96",
+        "name": "function 3",
+        "func": "\nconst data = msg.payload || {};\n\nconst doc = {\n    cep: data.cep || null,\n    street: data.street || data.logradouro || null,\n    neighborhood: data.neighborhood || data.bairro || null,\n    city: data.city || data.localidade || null,\n    state: data.state || data.uf || null,\n    timestamp: new Date()\n};\n\nmsg = { payload: doc };\n\nreturn msg;\n",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 780,
+        "y": 520,
+        "wires": [
+            [
+                "82604e6ffde07b05"
+            ]
+        ]
+    },
+    {
+        "id": "82604e6ffde07b05",
+        "type": "mongodb out",
+        "z": "f2cfb835707f7a96",
+        "mongodb": "32af7a1105839ceb",
+        "name": "",
+        "collection": "pesquisas",
+        "payonly": false,
+        "upsert": false,
+        "multi": false,
+        "operation": "insert",
+        "x": 1040,
+        "y": 520,
+        "wires": []
+    },
+    {
+        "id": "3998692096011708",
+        "type": "debug",
+        "z": "f2cfb835707f7a96",
+        "name": "debug 2",
+        "active": true,
+        "tosidebar": false,
+        "console": true,
+        "tostatus": false,
+        "complete": "true",
+        "targetType": "full",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 790,
+        "y": 660,
+        "wires": []
+    }
+]

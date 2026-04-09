@@ -1,0 +1,10 @@
+# Node-RED credentials
+*cred.json
+
+# Node-RED runtime files
+node_modules/
+
+# Logs
+*.log
+
+

@@ -1,0 +1,41 @@
+<div class="container">
+    <div class="card">
+        <h1>Task Manager</h1>
+
+        <div class="form">
+            <input [(ngModel)]="newTask.title" placeholder="Task title" />
+            <input [(ngModel)]="newTask.description" placeholder="Description" />
+
+            <select [(ngModel)]="newTask.priority">
+                <option>Low</option>
+                <option>Normal</option>
+                <option>High</option>
+            </select>
+
+            <button (click)="addTask()" [disabled]="isSaving">
+                <span *ngIf="!isSaving">Add Task</span>
+                <span *ngIf="isSaving" class="spinner"></span>
+            </button>
+        </div>
+
+        <div class="task-list">
+            <div class="task-item" *ngFor="let task of tasks" [ngClass]="{
+          'high-priority': task.priority?.toLowerCase() === 'high',
+          'normal-priority': task.priority?.toLowerCase() === 'normal',
+          'low-priority': task.priority?.toLowerCase() === 'low'
+        }">
+                <div class="task-content">
+                    <strong>{{ task.title }}</strong>
+                    <p>{{ task.description }}</p>
+                    <small class="priority-badge">
+                        {{ task.priority }}
+                    </small>
+                </div>
+
+                <button class="delete-btn" (click)="deleteTask(task.id!)">
+                    Delete
+                </button>
+            </div>
+        </div>
+    </div>
+</div>
