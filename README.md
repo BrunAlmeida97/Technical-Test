@@ -6,11 +6,12 @@ cd backend-api
 dotnet restore
 ## 3. Configurar PostgreSQL
 Editar appsettings.json:
-  ```bash
+
       "ConnectionStrings": {
         "DefaultConnection": "Host=localhost;Port=5432;Database=taskdb;Username=SEU_USUARIO;Password=SUA_SENHA"
       }
 
+---
 
 ## 4. Aplicar migrations
 dotnet ef database update
