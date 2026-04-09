@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "elqKZrrO9jc=",
+  "dgSpecHash": "6B2ZSYfr4UQ=",
   "success": true,
-  "projectFilePath": "/Users/brunoalmeida/Documents/Technical-Test/backend-api/backend-api.csproj",
+  "projectFilePath": "/Users/brunoalmeida/Documents/GitHub/Technical-Test/backend-api/backend-api.csproj",
   "expectedPackageFiles": [
     "/Users/brunoalmeida/.nuget/packages/humanizer.core/2.14.1/humanizer.core.2.14.1.nupkg.sha512",
     "/Users/brunoalmeida/.nuget/packages/microsoft.aspnetcore.openapi/10.0.5/microsoft.aspnetcore.openapi.10.0.5.nupkg.sha512",

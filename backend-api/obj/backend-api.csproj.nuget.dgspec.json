@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "/Users/brunoalmeida/Documents/Technical-Test/backend-api/backend-api.csproj": {}
+    "/Users/brunoalmeida/Documents/GitHub/Technical-Test/backend-api/backend-api.csproj": {}
   },
   "projects": {
-    "/Users/brunoalmeida/Documents/Technical-Test/backend-api/backend-api.csproj": {
+    "/Users/brunoalmeida/Documents/GitHub/Technical-Test/backend-api/backend-api.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "/Users/brunoalmeida/Documents/Technical-Test/backend-api/backend-api.csproj",
+        "projectUniqueName": "/Users/brunoalmeida/Documents/GitHub/Technical-Test/backend-api/backend-api.csproj",
         "projectName": "backend-api",
-        "projectPath": "/Users/brunoalmeida/Documents/Technical-Test/backend-api/backend-api.csproj",
+        "projectPath": "/Users/brunoalmeida/Documents/GitHub/Technical-Test/backend-api/backend-api.csproj",
         "packagesPath": "/Users/brunoalmeida/.nuget/packages/",
-        "outputPath": "/Users/brunoalmeida/Documents/Technical-Test/backend-api/obj/",
+        "outputPath": "/Users/brunoalmeida/Documents/GitHub/Technical-Test/backend-api/obj/",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "/Users/brunoalmeida/.nuget/NuGet/NuGet.Config"

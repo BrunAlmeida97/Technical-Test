@@ -16,6 +16,7 @@ export class TaskPageComponent {
 
   tasks: TaskItem[] = [];
   isSaving = false;
+  deletingTaskId: number | null = null;
   newTask: TaskItem = {
     title: '',
     description: '',
@@ -56,8 +57,16 @@ export class TaskPageComponent {
   }
 
   deleteTask(id: number) {
-    this.taskService.deleteTask(id).subscribe(() => {
-      this.tasks = this.tasks.filter((task) => task.id !== id);
+    this.deletingTaskId = id;
+
+    this.taskService.deleteTask(id).subscribe({
+      next: () => {
+        this.tasks = this.tasks.filter((task) => task.id !== id);
+        this.deletingTaskId = null;
+      },
+      error: () => {
+        this.deletingTaskId = null;
+      },
     });
   }
 }
