@@ -11,8 +11,6 @@ Editar appsettings.json:
         "DefaultConnection": "Host=localhost;Port=5432;Database=taskdb;Username=SEU_USUARIO;Password=SUA_SENHA"
       }
 
----
-
 ## 4. Aplicar migrations
 dotnet ef database update
 ## 5. Iniciar API
