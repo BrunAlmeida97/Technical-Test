@@ -1,3 +1,7 @@
+# 💾 Rodando e Testando o Backend
+1. Acessar a pasta
+cd backend-api
+
 2. Restaurar dependências
 dotnet restore
 3. Configurar PostgreSQL
